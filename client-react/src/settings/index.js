@@ -17,6 +17,9 @@ const Wrapper = styled.div`
   margin-right: 15%;
 
   @media ${device.mobileM} {
+    margin-top: 50px;
+    margin-left: inherit;
+    margin-right: inherit;
   }
 `;
 const PageTitle = styled.h2`
