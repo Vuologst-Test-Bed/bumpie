@@ -7,6 +7,7 @@ import Header from "../common/Header";
 import Footer from "../common/Footer";
 import DynamicButton from "../common/DynamicButton";
 import ToggleButton from "../common/ToggleButton";
+import SettingsSectionHeader from "../common/SettingsSectionHeader";
 
 const Wrapper = styled.div`
   max-width: 1920;
@@ -40,8 +41,7 @@ const Settings = () => {
             margin: 100,
           }}
         >
-          <h3>Notify me through...</h3>
-          <hr />
+          <SettingsSectionHeader title="Notify me through..." />
           <label style={{ display: "flex", justifyContent: "space-between" }}>
             <span>email@email.com</span>
             <ToggleButton
