@@ -1,9 +1,30 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+
+import { device } from "../common/MediaBreakpoints";
 
 import Header from "../common/Header";
 import Footer from "../common/Footer";
 import DynamicButton from "../common/DynamicButton";
 import ToggleButton from "../common/ToggleButton";
+
+const Wrapper = styled.div`
+  max-width: 1920;
+  margin: auto;
+  margin-top: 100px;
+  margin-left: 15%;
+  margin-right: 15%;
+
+  @media ${device.mobileM} {
+  }
+`;
+const PageTitle = styled.h2`
+  font-size: 35;
+
+  @media ${device.mobileM} {
+    display: none;
+  }
+`;
 
 const Settings = () => {
   const [emailNotification, setEmailToggle] = useState(false);
@@ -12,46 +33,30 @@ const Settings = () => {
   return (
     <>
       <Header />
-      <div
-        style={{
-          maxWidth: 1920,
-          margin: "auto",
-          paddingTop: 100,
-          paddingLeft: "15%",
-          paddingRight: "15%",
-        }}
-      >
-        <h2
-          style={{
-            fontSize: 35,
-          }}
-        >
-          Notification Settings
-        </h2>
+      <Wrapper>
+        <PageTitle>Notification Settings</PageTitle>
         <div
           style={{
-            padding: 100,
+            margin: 100,
           }}
         >
-          <div>
-            <h3>Notify me through...</h3>
-            <hr />
-            <label style={{ display: "flex", justifyContent: "space-between" }}>
-              <span>email@email.com</span>
-              <ToggleButton
-                onChange={() => setEmailToggle(!emailNotification)}
-                checked={emailNotification}
-              />
-            </label>
-            <br />
-            <label style={{ display: "flex", justifyContent: "space-between" }}>
-              <span>(123)456-7890</span>
-              <ToggleButton
-                onChange={() => setPhoneToggle(!phoneNotification)}
-                checked={phoneNotification}
-              />
-            </label>
-          </div>
+          <h3>Notify me through...</h3>
+          <hr />
+          <label style={{ display: "flex", justifyContent: "space-between" }}>
+            <span>email@email.com</span>
+            <ToggleButton
+              onChange={() => setEmailToggle(!emailNotification)}
+              checked={emailNotification}
+            />
+          </label>
+          <br />
+          <label style={{ display: "flex", justifyContent: "space-between" }}>
+            <span>(123) 456-7890</span>
+            <ToggleButton
+              onChange={() => setPhoneToggle(!phoneNotification)}
+              checked={phoneNotification}
+            />
+          </label>
           {/* start of reset and save button grouping TODO -- Move to div that will surround the page */}
           <DynamicButton
             text="save"
@@ -67,7 +72,7 @@ const Settings = () => {
           />
         </div>
         {/* end of reset and save button grouping...*/}
-      </div>
+      </Wrapper>
       <Footer />
     </>
   );
