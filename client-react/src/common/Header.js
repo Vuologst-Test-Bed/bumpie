@@ -2,10 +2,10 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { rubberBand, tada } from "react-animations";
 import logo from "../assets/logo.png";
-import user_icon from "../assets/user_icon.png";
+import UserLogo from "../common/UserLogo";
 
-const rubberAnimation = keyframes`${rubberBand}`
-const tadaAnimation = keyframes`${tada}`
+const rubberAnimation = keyframes`${rubberBand}`;
+const tadaAnimation = keyframes`${tada}`;
 
 const Container = styled.header`
   display: grid;
@@ -43,7 +43,7 @@ const Header = () => (
   <Container>
     <Link href="#">DASHBOARD</Link>
     <Branding src={logo} alt="logo" />
-    <UserIcon src={user_icon} alt="user icon" />
+    <UserLogo />
   </Container>
 );
 

@@ -1,0 +1,23 @@
+.st0 {
+  fill: #FFFFFF;
+}
+
+.st1 {
+  fill: #8FE8DF;
+}
+
+.st2 {
+  fill: #FFFFFF;
+}
+
+svg:hover .st0, svg:hover .st2 {
+  fill: #8FE8DF;
+}
+
+svg:hover .st0 {
+  stroke: #FFFFFF;
+}
+
+svg:hover .st1 {
+  fill: #FFFFFF;
+}
