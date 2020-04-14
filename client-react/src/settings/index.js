@@ -42,7 +42,7 @@ const Settings = () => {
         <PageTitle>Notification Settings</PageTitle>
         <div
           style={{
-            margin: 100,
+            margin: 80
           }}
         >
           <SettingsSectionHeader title="Notify me through..." />
@@ -51,29 +51,6 @@ const Settings = () => {
             <ToggleButton
               onChange={() => setEmailToggle(!emailNotification)}
               checked={emailNotification}
-
-          {/*start of radio button */}
-          <div style={{marginLeft: "25%", marginRight: "25%", marginTop: "2%"}}>
-          <h4>Notify Me...</h4>
-          <hr/>
-          <RadioButton />
-
-
-          {/* start of reset and save button grouping TODO -- Move to div that will surround the page */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              alignContent: "center",
-              marginTop: "5%"
-            }}
-          >
-            <DynamicButton
-              text="save"
-              onclick="save"
-              variant="link"
-              color="black"
-              textCase="uppercase"
             />
           </label>
           <br />
@@ -82,34 +59,41 @@ const Settings = () => {
             <ToggleButton
               onChange={() => setPhoneToggle(!phoneNotification)}
               checked={phoneNotification}
-            <DynamicButton
-              text="reset"
-              onclick="reset"
-              variant="link"
-              color="black"
-              textCase="uppercase"
             />
           </label>
-          {/* start of reset and save button grouping TODO -- Move to div that will surround the page */}
-          <DynamicButton
-            text="save"
-            onclick="save"
-            variant="link"
-            color="black"
-          />
-          <DynamicButton
-            text="reset"
-            onclick="reset"
-            variant="link"
-            color="black"
-          />
+          <div
+            style={{
+              marginTop: 40
+            }}
+          >
+            <SettingsSectionHeader title="Notify me..." />
+            <div style={{ marginTop: 30 }}>
+              <RadioButton />
+            </div>
+            {/* start of reset and save button grouping TODO -- Move to div that will surround the page */}
+            <div
+              style={{
+                marginTop: 50,
+                display: "flex",
+                justifyContent: "flex-end"
+              }}
+            >
+              <DynamicButton
+                text="reset"
+                onclick="reset"
+                variant="link"
+                color="black"
+                textCase="uppercase"
+              />
+              <DynamicButton
+                text="save"
+                onclick="save"
+                variant="link"
+                color="black"
+                textCase="uppercase"
+              />
+            </div>
           </div>
-          {/* end of reset and save button grouping...*/}
-
-          </div>
-          {/*end of radio button */}
-
-
         </div>
         {/* end of reset and save button grouping...*/}
       </Wrapper>
