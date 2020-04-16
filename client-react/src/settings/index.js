@@ -34,7 +34,6 @@ const PageTitle = styled.h2`
 const Settings = () => {
   const [emailNotification, setEmailToggle] = useState(false);
   const [phoneNotification, setPhoneToggle] = useState(false);
-
   return (
     <>
       <Header />
@@ -81,14 +80,12 @@ const Settings = () => {
               <DynamicButton
                 text="reset"
                 onclick="reset"
-                variant="link"
                 color="black"
                 textCase="uppercase"
               />
               <DynamicButton
                 text="save"
                 onclick="save"
-                variant="link"
                 color="black"
                 textCase="uppercase"
               />

@@ -1,32 +1,44 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import DynamicButton from "../common/DynamicButton";
 import styled from "styled-components";
 
 const Main = styled.div`
   display: flex;
   justify-content: space-between;
-`
-class RadioButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {disabled: false};
-  }
+`;
 
-  handleRadio() {
-    this.setState({disabled: true});
-    console.log(this.state.disabled)
-  }
+const RadButton = styled(DynamicButton)`
+  background-color: ${props => (props.yak ? "black" : "blue")};
+  color: white;
+  border-radius: 16px;
+  padding: 6px 40px 6px 40px;
+`;
 
-  render() {
-    return (
-      <Main>
-        <DynamicButton text="bi-weekly" variant="light" textCase="lowercase" onClick={this.handleRadio} disabled={this.state.disabled} bgColor="#2EC4B6" color="white" borderRadius="16px" padding="6px 40px 6px 40px"/>
-        <DynamicButton text="monthly" variant="light" disabled={this.state.disabled} bgColor="#2EC4B6" color="white" borderRadius="16px" padding="6px 40px 6px 40px"/>
-        <DynamicButton text="quarterly" variant="light" disabled={this.state.disabled} bgColor="#2EC4B6" color="white" borderRadius="16px" padding="6px 40px 6px 40px"/>
-        <DynamicButton text="yearly" variant="light" disabled={this.state.disabled} bgColor="#2EC4B6" color="white" borderRadius="16px" padding="6px 40px 6px 40px"/>
-      </Main>
-    );
-  }
+const RadioButton = () => {
+  const [monthlyButton, setMonthlyButton] = useState(false);
+  const [quarterlyButton, setQuarterlyButton] = useState(false);
+  const [biweeklyButton, setBiweeklyButton] = useState(false);
+  const [yearlyButton, setYearlyButton] = useState(false);
+  return (
+    <Main>
+      <RadButton
+        text="bi-weekly"
+        onClick={() => {
+          setBiweeklyButton(!biweeklyButton);
+        }}
+        yak={biweeklyButton ? true : false}
+      />
+      <RadButton
+        text="monthly"
+        onClick={() => setBiweeklyButton(!biweeklyButton)}
+      />
+      <RadButton
+        text="quarterly"
+        onClick={() => setQuarterlyButton(!quarterlyButton)}
+      />
+      <RadButton text="yearly" onClick={() => setYearlyButton(!yearlyButton)} />
+    </Main>
+  );
 };
 
 export default RadioButton;
