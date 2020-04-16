@@ -16,13 +16,14 @@ const Container = styled.header`
   color: #ff4d4d;
   padding-top: 20px;
   padding-bottom: 20px;
-  justify-items: center;
 `;
 const Link = styled.a`
   font-size: 25px;
   font-weight: bold;
   color: white;
   text-decoration: none;
+  justify-self: flex-start;
+  margin-left: 70px;
 `;
 
 const Branding = styled.img`
@@ -30,6 +31,7 @@ const Branding = styled.img`
     animation: 2s ${rubberAnimation};
   }
   height: 50px;
+  justify-self: center;
 `;
 
 const UserIcon = styled.img`
@@ -37,6 +39,8 @@ const UserIcon = styled.img`
     animation: 2s ${tadaAnimation};
   }
   height: 50px;
+  justify-self: flex-end;
+  margin-right: 70px;
 `;
 
 const Header = () => (
