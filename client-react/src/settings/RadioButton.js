@@ -8,35 +8,50 @@ const Main = styled.div`
 `;
 
 const RadButton = styled(DynamicButton)`
-  background-color: ${props => (props.yak ? "black" : "blue")};
+  background-color: ${props => (props.color ? "#2EC4B6" : "#8FE8DF")};
   color: white;
   border-radius: 16px;
   padding: 6px 40px 6px 40px;
 `;
 
 const RadioButton = () => {
-  const [monthlyButton, setMonthlyButton] = useState(false);
-  const [quarterlyButton, setQuarterlyButton] = useState(false);
-  const [biweeklyButton, setBiweeklyButton] = useState(false);
-  const [yearlyButton, setYearlyButton] = useState(false);
+  const [radioSet, setRadioSet] = useState([true, false, false, false]);
+
+  const radioClick = index => {
+    setRadioSet(
+      radioSet.map((x, i) => {
+        if (index != i) {
+          x = false;
+        } else {
+          x = true;
+        }
+        return x;
+      })
+    );
+  };
+
   return (
     <Main>
       <RadButton
         text="bi-weekly"
-        onClick={() => {
-          setBiweeklyButton(!biweeklyButton);
-        }}
-        yak={biweeklyButton ? true : false}
+        onClick={() => radioClick(0)}
+        color={radioSet[0] ? true : false}
       />
       <RadButton
         text="monthly"
-        onClick={() => setBiweeklyButton(!biweeklyButton)}
+        onClick={() => radioClick(1)}
+        color={radioSet[1] ? true : false}
       />
       <RadButton
         text="quarterly"
-        onClick={() => setQuarterlyButton(!quarterlyButton)}
+        onClick={() => radioClick(2)}
+        color={radioSet[2] ? true : false}
       />
-      <RadButton text="yearly" onClick={() => setYearlyButton(!yearlyButton)} />
+      <RadButton
+        text="yearly"
+        onClick={() => radioClick(3)}
+        color={radioSet[3] ? true : false}
+      />
     </Main>
   );
 };
