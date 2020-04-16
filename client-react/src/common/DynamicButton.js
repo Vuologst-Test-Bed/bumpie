@@ -22,14 +22,14 @@ const Button = styled.button`
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 `;
 
-const DynamicButton = ({ text, onclick, color, textCase, className }) => {
+const DynamicButton = ({ text, onClick, color, textCase, className }) => {
   let basicStyle = {
     textDecoration: "none"
   };
 
   return (
     <Button
-      onClick={onclick}
+      onClick={onClick}
       style={{
         ...basicStyle,
         ...{
