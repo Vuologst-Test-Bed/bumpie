@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import "./DynamicButton.css";
 
 const Button = styled.button`
   display: inline-block;
@@ -24,21 +23,13 @@ const Button = styled.button`
 
 const DynamicButton = ({ text, onClick, color, textCase, className }) => {
   let basicStyle = {
-    textDecoration: "none"
+    textDecoration: "none",
+    color: color,
+    textTransform: textCase
   };
 
   return (
-    <Button
-      onClick={onClick}
-      style={{
-        ...basicStyle,
-        ...{
-          color: color,
-          textTransform: textCase
-        }
-      }}
-      className={className}
-    >
+    <Button onClick={onClick} style={{ basicStyle }} className={className}>
       {text}
     </Button>
   );
