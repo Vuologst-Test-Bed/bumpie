@@ -23,6 +23,12 @@ const Wrapper = styled.div`
     margin-right: inherit;
   }
 `;
+
+const StyledButton = styled(DynamicButton)`
+  text-transform: uppercase;
+  color: black;
+`;
+
 const PageTitle = styled.h2`
   font-size: 35;
 
@@ -77,18 +83,8 @@ const Settings = () => {
                 justifyContent: "flex-end"
               }}
             >
-              <DynamicButton
-                text="reset"
-                onclick="reset"
-                color="black"
-                textCase="uppercase"
-              />
-              <DynamicButton
-                text="save"
-                onclick="save"
-                color="black"
-                textCase="uppercase"
-              />
+              <StyledButton text="reset" />
+              <StyledButton text="save" />
             </div>
           </div>
         </div>

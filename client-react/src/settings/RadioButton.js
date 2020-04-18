@@ -13,7 +13,7 @@ const Main = styled.div`
 `;
 
 const RadButton = styled(DynamicButton)`
-  background-color: ${props => (props.color ? "#2EC4B6" : "#8FE8DF")};
+  background-color: ${props => (props.bgColor ? "#2EC4B6" : "#8FE8DF")};
   color: white;
   border-radius: 16px;
   padding: 6px 40px 6px 40px;
@@ -44,22 +44,22 @@ const RadioButton = () => {
       <RadButton
         text="bi-weekly"
         onClick={() => radioClick(0)}
-        color={radioSet[0] ? true : false}
+        bgColor={radioSet[0] ? true : false}
       />
       <RadButton
         text="monthly"
         onClick={() => radioClick(1)}
-        color={radioSet[1] ? true : false}
+        bgColor={radioSet[1] ? true : false}
       />
       <RadButton
         text="quarterly"
         onClick={() => radioClick(2)}
-        color={radioSet[2] ? true : false}
+        bgColor={radioSet[2] ? true : false}
       />
       <RadButton
         text="yearly"
         onClick={() => radioClick(3)}
-        color={radioSet[3] ? true : false}
+        bgColor={radioSet[3] ? true : false}
       />
     </Main>
   );
