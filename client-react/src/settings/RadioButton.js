@@ -5,6 +5,11 @@ import styled from "styled-components";
 const Main = styled.div`
   display: flex;
   justify-content: space-between;
+  @media (max-width: 1036px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+  }
 `;
 
 const RadButton = styled(DynamicButton)`
@@ -12,6 +17,10 @@ const RadButton = styled(DynamicButton)`
   color: white;
   border-radius: 16px;
   padding: 6px 40px 6px 40px;
+  @media (max-width: 1036px) {
+    margin: 5px;
+    padding: 6px 5px 6px 5px;
+  }
 `;
 
 const RadioButton = () => {
