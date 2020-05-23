@@ -13,7 +13,7 @@ const Main = styled.div`
 `;
 
 const RadButton = styled(DynamicButton)`
-  background-color: ${(props) => (props.bgColor ? "#2EC4B6" : "#8FE8DF")};
+  background-color: ${props => (props.bgColor ? "#2EC4B6" : "#8FE8DF")};
   color: white;
   border-radius: 16px;
   padding: 6px 40px 6px 40px;
@@ -26,7 +26,7 @@ const RadButton = styled(DynamicButton)`
 const RadioButton = () => {
   const [radioSet, setRadioSet] = useState([true, false, false, false]);
 
-  const radioClick = (index) => {
+  const radioClick = index => {
     setRadioSet(
       radioSet.map((x, i) => {
         if (index !== i) {
@@ -35,7 +35,7 @@ const RadioButton = () => {
           x = true;
         }
         return x;
-      }),
+      })
     );
   };
 
