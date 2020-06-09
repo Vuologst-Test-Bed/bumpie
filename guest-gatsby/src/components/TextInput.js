@@ -9,10 +9,10 @@ const Input = styled.input`
   border: 1px solid transparent;
   padding: 10px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1050px) {
     width: 250px;
   }
-  @media (max-width: 414px) {
+  @media (max-width: 800px) {
     width: 100px;
     height: 5px;
     margin-bottom: 10px;
