@@ -2,8 +2,6 @@ import React from "react";
 import Routes from "./Routes";
 import styled from "styled-components";
 
-import { device } from "./common/MediaBreakpoints";
-
 import Header from "./common/Header";
 import Footer from "./common/Footer";
 

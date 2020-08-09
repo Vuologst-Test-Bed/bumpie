@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { animated } from "react-spring";
+//import { animated } from "react-spring";
 import GoogleSignInDarkNormalWeb2x from "../assets/GoogleSignInDarkNormalWeb2x.png";
 import Polygon from "../assets/Polygon.png";
 import DynamicButton from "../common/DynamicButton";
