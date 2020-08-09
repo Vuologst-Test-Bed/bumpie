@@ -28,13 +28,12 @@ const Wrapper = styled.div`
 `;
 
 const App = () => {
+  const pathname = window.location.pathname;
   return (
     <Site>
-      <Header />
-      <Wrapper>
-        <Routes />
-      </Wrapper>
-      <Footer />
+      {pathname === "/sign-in" ? "" : <Header />}
+      <Routes />
+      {pathname === "/sign-in" ? "" : <Footer />}
     </Site>
   );
 };
