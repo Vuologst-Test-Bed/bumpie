@@ -1,48 +1,48 @@
 import React from "react";
 import styled from "styled-components";
 //import "bootstrap/dist/css/bootstrap.min.css"
-import Layout from "../common/layout";
+// import Layout from "../common/layout";
 
-import DrawingIllustration from "../assets/DrawingBikeIllustration.svg";
-import PostItDrawing from "../assets/PostItDrawing.svg";
-import ScienceIllustration from "../assets/ScienceIllustration.svg";
-import LandingMiddleBackground from "../assets/LandingMiddleBackground.svg";
+// import DrawingIllustration from "../assets/DrawingBikeIllustration.svg";
+// import PostItDrawing from "../assets/PostItDrawing.svg";
+// import ScienceIllustration from "../assets/ScienceIllustration.svg";
+// import LandingMiddleBackground from "../assets/LandingMiddleBackground.svg";
+//
+// import ClipboardSwirls from "../assets/ClipboardSwirls.svg";
+// import CoffeeMidSmoke from "../assets/CoffeeMidSmoke.svg";
+// import CoffeeSwirls from "../assets/CoffeeSwirls.svg";
+// import PostItSwirl from "../assets/PostItSwirl.svg";
 
-import ClipboardSwirls from "../assets/ClipboardSwirls.svg";
-import CoffeeMidSmoke from "../assets/CoffeeMidSmoke.svg";
-import CoffeeSwirls from "../assets/CoffeeSwirls.svg";
-import PostItSwirl from "../assets/PostItSwirl.svg";
-
-const HomePageH1 = styled.h1`
-  font-family: Quicksand;
-  font-size: 55px;
-  font-weight: bold;
-`;
-const HomePageH2 = styled.h2`
-  font-family: Quicksand;
-  font-size: 55px;
-  font-weight: bold;
-  color: ${props => (props.white ? "#fff" : "#000")};
-`;
-const HomePageHeroP = styled.p`
-  font-family: Roboto;
-  font-size: 35px;
-  padding: 50px 0px;
-  color: ${props => (props.white ? "#fff" : "#000")};
-`;
-const StartBtn = styled.button`
-  border-color: #ff7690;
-  background-color: #ff7690;
-  fontweight: 400px;
-  text-align: center;
-  border: 1px solid transparent;
-  padding: 0.375rem 1rem;
-  border-radius: 39px;
-  color: #fff;
-  font-size: 2rem;
-  font-family: Roboto;
-  cursor: pointer;
-`;
+// const HomePageH1 = styled.h1`
+//   font-family: Quicksand;
+//   font-size: 55px;
+//   font-weight: bold;
+// `;
+// const HomePageH2 = styled.h2`
+//   font-family: Quicksand;
+//   font-size: 55px;
+//   font-weight: bold;
+//   color: ${props => (props.white ? "#fff" : "#000")};
+// `;
+// const HomePageHeroP = styled.p`
+//   font-family: Roboto;
+//   font-size: 35px;
+//   padding: 50px 0px;
+//   color: ${props => (props.white ? "#fff" : "#000")};
+// `;
+// const StartBtn = styled.button`
+//   border-color: #ff7690;
+//   background-color: #ff7690;
+//   fontweight: 400px;
+//   text-align: center;
+//   border: 1px solid transparent;
+//   padding: 0.375rem 1rem;
+//   border-radius: 39px;
+//   color: #fff;
+//   font-size: 2rem;
+//   font-family: Roboto;
+//   cursor: pointer;
+// `;
 
 const Home = () => (
   <main style={{ backgroundColor: "#8fe8df" }}>
