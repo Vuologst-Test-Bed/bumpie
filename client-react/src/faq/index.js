@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import Layout from "../common/layout";
-
 const Q = styled.h3`
   font-family: "Quicksand";
   font-size: 20px;
