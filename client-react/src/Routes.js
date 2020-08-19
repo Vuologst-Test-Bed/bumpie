@@ -3,6 +3,9 @@ import { Route, Switch } from "react-router-dom";
 
 import NotificationSettings from "./notification-settings";
 import SignIn from "./signin";
+import FAQ from "./faq";
+import Home from "./home";
+import AboutUsPage from "./about-us";
 
 export default function Routes() {
   return (
@@ -12,6 +15,15 @@ export default function Routes() {
       </Route>
       <Route exact path="/sign-in">
         <SignIn />
+      </Route>
+      <Route exact path="/faq">
+        <FAQ />
+      </Route>
+      <Route exact path="/home">
+        <Home />
+      </Route>
+      <Route exact path="about-us">
+        <AboutUsPage />
       </Route>
     </Switch>
   );
