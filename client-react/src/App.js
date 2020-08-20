@@ -11,12 +11,18 @@ const Site = styled.div`
   flex-direction: column;
 `;
 
+const Main = styled.div`
+  min-height: 80vh;
+`;
+
 const App = () => {
   const pathname = window.location.pathname;
   return (
     <Site>
       {pathname === "/sign-in" ? "" : <Header />}
-      <Routes />
+      <Main>
+        <Routes />
+      </Main>
       {pathname === "/sign-in" ? "" : <Footer />}
     </Site>
   );
