@@ -22,7 +22,11 @@ export default function Routes() {
       <Route exact path="/home">
         <Home />
       </Route>
+<<<<<<< sign-up-design
       <Route exact path="about-us">
+=======
+      <Route exact path="/about-us">
+>>>>>>> Gatsby removal (#56)
         <AboutUsPage />
       </Route>
     </Switch>
