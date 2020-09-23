@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Polygon from "../assets/Polygon.png";
 import DynamicButton from "../common/DynamicButton";
 import TextInput from "../common/TextInput";
+import logo from "../assets/logo.png";
+import { device } from "../common/MediaBreakpoints";
 
 const CenterContainer = styled.div`
   display: flex;
@@ -36,6 +38,8 @@ const LeftContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-image: url(${props => props.img});
+  background-position: center;
+  background-size: cover;
 `;
 const RightContainer = styled.div`
   width: 40%;
@@ -75,6 +79,7 @@ const Title = styled.h1`
   font-weight: "bold";
   margin-bottom: 30px;
   color: ${props => (props.light ? "#fff" : "#000")};
+  margin-top: ${props => (props.top ? "50px" : "40px")};
   @media (max-width: 800px) {
     font-size: 22px;
     margin-bottom: 10px;
@@ -113,6 +118,20 @@ const Link = styled.a`
     font-size: 12px;
   }
 `;
+const Branding = styled.img`
+  height: 30px;
+  align-self: start;
+  margin-left: 40px;
+  margin-top: ${props => (props.top ? "-60px" : "-85px")};
+  @media ${device.mobileM} {
+    margin-left: 15px;
+    justify-self: start;
+  }
+  @media ${device.mobileL} {
+    margin-left: 25px;
+    justify-self: start;
+  }
+`;
 
 const SignIn = () => {
   const [page, setPage] = useState([true, false]);
@@ -133,6 +152,7 @@ const SignIn = () => {
     <CenterContainer>
       <ContentWrapper display={page[0] ? true : false}>
         <LeftContainer img={Polygon} light>
+          <Branding src={logo} top alt="logo" />
           <Title>Sign In</Title>
           <form>
             <TextInput type="text" placeholder="Email" />
@@ -152,7 +172,10 @@ const SignIn = () => {
       </ContentWrapper>
       <ContentWrapper display={page[1] ? true : false}>
         <LeftContainer smol>
-          <Title light>Welcome!</Title>
+          <Branding src={logo} alt="logo" />
+          <Title light top>
+            Welcome!
+          </Title>
           <Text>
             Already have an account? <br /> Sign in!
           </Text>
