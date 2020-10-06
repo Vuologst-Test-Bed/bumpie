@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretRight, faEllipsisH } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCaretRight,
+  faEllipsisH,
+  faCaretDown,
+} from "@fortawesome/free-solid-svg-icons";
 const CategoryWrapper = styled.div`
   background-color: white;
   padding: 15px;
@@ -20,19 +24,58 @@ const Title = styled.h1`
   font-size: 25pt;
 `;
 
+const ContentWrapper = styled.div`
+  margin-left: 30px !important;
+  margin: 10px;
+`;
+
 const CategoryBox = ({ title }) => {
-  return (
-    <CategoryWrapper>
-      <TitleWrapper>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <FontAwesomeIcon icon={faCaretRight} size="lg" />
-          <Title>{title}</Title>
-        </div>
-        <FontAwesomeIcon icon={faEllipsisH} color="#707070" />
-      </TitleWrapper>
-      <div>PLACE HOLDER FOR REST OF CONTENT</div>
-    </CategoryWrapper>
-  );
+  const [display, setDisplay] = useState(false);
+
+  const showCategoryContent = () => {
+    return (
+      <CategoryWrapper>
+        <TitleWrapper>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <span>
+              <FontAwesomeIcon
+                icon={faCaretDown}
+                size="lg"
+                onClick={() => setDisplay(!display)}
+              />
+            </span>
+            <Title>{title}</Title>
+          </div>
+          <FontAwesomeIcon icon={faEllipsisH} color="#707070" />
+        </TitleWrapper>
+        <ContentWrapper display={display[1] ? true : false}>
+          <div style={{ height: "50px" }}>PLACE HOLDER FOR REST OF CONTENT</div>
+        </ContentWrapper>
+      </CategoryWrapper>
+    );
+  };
+
+  const hideCategoryContent = () => {
+    return (
+      <CategoryWrapper>
+        <TitleWrapper>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <span>
+              <FontAwesomeIcon
+                icon={faCaretRight}
+                size="lg"
+                onClick={() => setDisplay(!display)}
+              />
+            </span>
+            <Title>{title}</Title>
+          </div>
+          <FontAwesomeIcon icon={faEllipsisH} color="#707070" />
+        </TitleWrapper>
+      </CategoryWrapper>
+    );
+  };
+
+  return display ? showCategoryContent() : hideCategoryContent();
 };
 
 export default CategoryBox;
