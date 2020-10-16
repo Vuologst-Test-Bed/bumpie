@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Dropdown from "./Dropdown";
+import useOnclickOutside from "react-cool-onclickoutside";
+import { device } from "../common/MediaBreakpoints";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCaretRight,
@@ -30,8 +33,35 @@ const ContentWrapper = styled.div`
   margin: 10px;
 `;
 
+const EllipsisWrapper = styled.div`
+  position: relative;
+  justify-self: flex-end;
+  margin-right: 5px;
+  @media ${device.mobileM} {
+    justify-self: end;
+    margin-right: 10px;
+  }
+  @media ${device.mobileL} {
+    margin-right: 25px;
+    justify-self: end;
+  }
+`;
+
+const StyledDropdown = styled(Dropdown)`
+  display: flex;
+  z-index: 1000;
+  @media ${device.mobileL} {
+    margin-right: 70px;
+  }
+`;
+
 const CategoryBox = ({ title }) => {
   const [display, setDisplay] = useState(false);
+  const [dropdownDisplay, setDropdownDisplay] = useState(false);
+
+  const ref = useOnclickOutside(() => {
+    setDropdownDisplay(false);
+  });
 
   const showCategoryContent = () => {
     return (
@@ -47,9 +77,20 @@ const CategoryBox = ({ title }) => {
             </span>
             <Title>{title}</Title>
           </div>
-          <FontAwesomeIcon icon={faEllipsisH} color="#707070" />
+          <EllipsisWrapper>
+            <FontAwesomeIcon
+              icon={faEllipsisH}
+              color="#707070"
+              onClick={() => setDropdownDisplay(!dropdownDisplay)}
+            />
+            {dropdownDisplay && (
+              <div ref={ref}>
+                <StyledDropdown />
+              </div>
+            )}
+          </EllipsisWrapper>
         </TitleWrapper>
-        <ContentWrapper display={display[1] ? true : false}>
+        <ContentWrapper>
           <div style={{ height: "50px" }}>PLACE HOLDER FOR REST OF CONTENT</div>
         </ContentWrapper>
       </CategoryWrapper>
@@ -70,7 +111,18 @@ const CategoryBox = ({ title }) => {
             </span>
             <Title>{title}</Title>
           </div>
-          <FontAwesomeIcon icon={faEllipsisH} color="#707070" />
+          <EllipsisWrapper ref={ref}>
+            <FontAwesomeIcon
+              icon={faEllipsisH}
+              color="#707070"
+              onClick={() => setDropdownDisplay(!dropdownDisplay)}
+            />
+            {dropdownDisplay && (
+              <div ref={ref}>
+                <StyledDropdown />
+              </div>
+            )}
+          </EllipsisWrapper>
         </TitleWrapper>
       </CategoryWrapper>
     );
