@@ -5,7 +5,7 @@
 
 [build]
   base    = "client-react"
-  publish = "build"
+  publish = "client-react/build"
   command = "REACT_APP_STAGE=dev npm run build"
 
 # Production context: All deploys to the main
