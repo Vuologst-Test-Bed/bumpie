@@ -9,6 +9,7 @@ import {
   faCaretRight,
   faEllipsisH,
   faCaretDown,
+  faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
 const CategoryWrapper = styled.div`
   background-color: white;
@@ -49,6 +50,12 @@ const SubHeader = styled.div`
   justify-content: space-between;
 `;
 
+const FooterWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const EllipsisWrapper = styled.div`
   position: relative;
   justify-self: flex-end;
@@ -74,8 +81,18 @@ const StyledDropdown = styled(Dropdown)`
 
 const CategoryBox = ({ title }) => {
   const [display, setDisplay] = useState(false);
+  const [count, setCount] = useState(0);
   const [dropdownDisplay, setDropdownDisplay] = useState(false);
 
+  //subcategory array
+  const subcategoryRender = [];
+
+  for (var i = 0; i < count; i++) {
+    // push the component to array!
+    subcategoryRender.push(
+      <SubCategory key={i} title={"Sub Category " + (i + 1)} />
+    );
+  }
   const ref = useOnclickOutside(() => {
     setDropdownDisplay(false);
   });
@@ -119,8 +136,18 @@ const CategoryBox = ({ title }) => {
             <div></div>
           </SubcategoryGrid>
           <Divider />
-          <SubCategory title="Sub Category 1" />
+          {subcategoryRender}
         </ContentWrapper>
+        <FooterWrapper>
+          <SubHeader>{count} / 5 </SubHeader>
+          <FontAwesomeIcon
+            icon={faPlusCircle}
+            color="#2EC4B6"
+            size="2x"
+            style={{ marginLeft: "10px" }}
+            onClick={() => setCount(count < 5 ? count + 1 : 5)}
+          />
+        </FooterWrapper>
       </CategoryWrapper>
     );
   };
