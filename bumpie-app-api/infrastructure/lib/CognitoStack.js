@@ -23,7 +23,9 @@ export default class CognitoStack extends sst.Stack {
 
     const userPoolDomain = new cognito.UserPoolDomain(this, "UserPoolDomain", {
       userPool,
-      cognitoDomain: "bumpie-app",
+      cognitoDomain: {
+        domainPrefix: "bumpie-app",
+      },
     });
 
     const userPoolClient = new cognito.UserPoolClient(this, "UserPoolClient", {
