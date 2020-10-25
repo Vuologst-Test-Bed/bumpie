@@ -11,14 +11,19 @@ export default class CognitoStack extends sst.Stack {
 
     const userPool = new cognito.UserPool(this, "UserPool", {
       selfSignUpEnabled: true, // Allow users to sign up
-      autoVerify: { email: true }, // Verify email addresses by sending a verification code
+      autoVerify: { email: true }, // Verify email addresses by sending a verification email
       signInAliases: { email: true }, // Set email as an alias
       userVerification: {
         emailBody:
-          "Welcome to Bumpie!! Verify your account by clicking on {##Verify Email##}",
+          "Welcome to Bumpie!! Verify your account by clicking here -> {##Verify Email##}",
         emailStyle: VerificationEmailStyle.LINK,
         emailSubject: "Bumpie Email Verification",
       },
+    });
+
+    const userPoolDomain = new cognito.UserPoolDomain(this, "UserPoolDomain", {
+      userPool,
+      cognitoDomain: "bumpie-app",
     });
 
     const userPoolClient = new cognito.UserPoolClient(this, "UserPoolClient", {
