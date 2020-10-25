@@ -3,6 +3,7 @@ import * as iam from "@aws-cdk/aws-iam";
 import * as cognito from "@aws-cdk/aws-cognito";
 import * as sst from "@serverless-stack/resources";
 import CognitoAuthRole from "./CognitoAuthRole";
+import { VerificationEmailStyle } from "@aws-cdk/aws-cognito";
 
 export default class CognitoStack extends sst.Stack {
   constructor(scope, id, props) {
