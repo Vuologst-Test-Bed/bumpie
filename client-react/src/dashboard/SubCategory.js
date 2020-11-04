@@ -1,13 +1,25 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import Slider from "rc-slider";
+import { slideOutUp, slideInDown } from "react-animations";
 import "rc-slider/assets/index.css";
+
+const slideOutUpAnimation = keyframes`${slideOutUp}`;
+const slideInDownAnimation = keyframes`${slideInDown}`;
+
+const outAnimation = css`
+  animation: 1s ${slideOutUpAnimation};
+`;
+const slideInAnimation = css`
+  animation: 1s ${slideInDownAnimation};
+`;
 
 const SubcategoryWrapper = styled.div`
   display: grid;
   grid-template-columns: 2fr 3fr 1fr;
+  ${(props) => (props.animate ? outAnimation : slideInAnimation)};
 `;
 const SubcategoryTitle = styled.p`
   color: ${(props) => (props.one ? "#a6a6a6" : "black")};
@@ -28,10 +40,10 @@ const Divider = styled.hr`
   margi-bottom: 20px;
 `;
 
-const SubCategory = ({ title, one }) => {
+const SubCategory = ({ title, one, animation }) => {
   return (
     <>
-      <SubcategoryWrapper>
+      <SubcategoryWrapper animate={animation}>
         <GridDiv>
           <SubcategoryTitle one={one}>{title}</SubcategoryTitle>
         </GridDiv>
