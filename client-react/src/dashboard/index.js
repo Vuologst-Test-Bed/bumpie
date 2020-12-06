@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import CategoryBox from "./CategoryBox";
 import PentagonBox from "./PentagonBox";
@@ -19,17 +19,62 @@ const CategoryWrapper = styled.div`
 `;
 
 const Dashboard = () => {
+  // All categories data
+  const [allData, setAllData] = useState([[], [], [], [], []]);
+
+  const onChange = (i, newData) => {
+    // Create COPY and set new data
+    const copyAllData = [...allData];
+    copyAllData[i] = newData;
+    if (copyAllData[i].length === 1) {
+      copyAllData[i][0].previousTitle = copyAllData[i][0].title;
+      copyAllData[i][0].title = "Category " + (i + 1);
+      console.log(copyAllData[i][0].title);
+    } else {
+      if (copyAllData[i][0].previousTitle !== null) {
+        copyAllData[i][0].title = copyAllData[i][0].previousTitle;
+        copyAllData[i][0].previousTitle = null;
+      }
+    }
+    setAllData(copyAllData);
+  };
+
   return (
     <ContentWrapper>
       <PentagonWrapper>
         <PentagonBox></PentagonBox>
       </PentagonWrapper>
       <CategoryWrapper>
-        <CategoryBox title="Category 1"></CategoryBox>
-        <CategoryBox title="Category 2"></CategoryBox>
-        <CategoryBox title="Category 3"></CategoryBox>
-        <CategoryBox title="Category 4"></CategoryBox>
-        <CategoryBox title="Category 5"></CategoryBox>
+        <CategoryBox
+          title="Category 1"
+          data={allData[0]}
+          onChange={(data) => onChange(0, data)}
+          one={allData[0].length > 1 ? false : true}
+        ></CategoryBox>
+        <CategoryBox
+          title="Category 2"
+          data={allData[1]}
+          onChange={(data) => onChange(1, data)}
+          one={allData[1].length > 1 ? false : true}
+        ></CategoryBox>
+        <CategoryBox
+          title="Category 3"
+          data={allData[2]}
+          onChange={(data) => onChange(2, data)}
+          one={allData[2].length > 1 ? false : true}
+        ></CategoryBox>
+        <CategoryBox
+          title="Category 4"
+          data={allData[3]}
+          onChange={(data) => onChange(3, data)}
+          one={allData[3].length > 1 ? false : true}
+        ></CategoryBox>
+        <CategoryBox
+          title="Category 5"
+          data={allData[4]}
+          onChange={(data) => onChange(4, data)}
+          one={allData[4].length > 1 ? false : true}
+        ></CategoryBox>
       </CategoryWrapper>
     </ContentWrapper>
   );

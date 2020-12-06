@@ -133,37 +133,25 @@ const SaveButton = styled(DynamicButton)`
   margin-left: 5px;
 `;
 
-const CategoryBox = ({ title }) => {
+const CategoryBox = ({ title, onChange, data, one }) => {
   const [animate, setAnimate] = useState(false);
-  const [count, setCount] = useState(1);
   const [dropdownDisplay, setDropdownDisplay] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
   const [activeKey, setActiveKey] = useState(2);
-  //subcategory array
-  const subcategoryRender = [];
 
-  if (count === 1) {
-    subcategoryRender.push(<SubCategory key="0" title={title} one />);
-  } else {
-    for (var i = 0; i < count; i++) {
-      // push the component to array!
-      if (i === count) {
-        subcategoryRender.push(
-          <SubCategory
-            id="test"
-            key={i}
-            title={"Sub Category " + (i + 1)}
-            animation
-          />
-        );
-      } else {
-        subcategoryRender.push(
-          <SubCategory key={i} title={"Sub Category " + (i + 1)} />
-        );
-      }
-    }
+  if (data.length === 0) {
+    onChange([{ title: "Sub Category " + (data.length + 1), value: 0 }]);
   }
+
+  const addSubCat = () => {
+    const renderArr = [...data];
+    renderArr.push({
+      title: "Sub Category " + (data.length + 1),
+      value: 0,
+    });
+    onChange(renderArr);
+  };
 
   const ref = useOnclickOutside(() => {
     setDropdownDisplay(false);
@@ -193,6 +181,25 @@ const CategoryBox = ({ title }) => {
     } else {
       setActiveKey(1);
     }
+  };
+
+  // Remove sub category
+  const onDelete = (key) => {
+    // FUCK REFERENCES
+    const renderArr = [...data];
+    // ACTUALLY REMOVE ANIMATION
+    if (renderArr.length > 1) {
+      renderArr.splice(key, 1);
+    }
+    // CALC THE NEW COUNT && SET ANIMATION TO ABSOLUTELY NOTHING THEN RERENDER
+    onChange(renderArr);
+  };
+
+  const onSliderChange = (i, sliderKey) => {
+    const renderArr = [...data];
+    // update value with new slider val
+    renderArr[i].value = sliderKey;
+    onChange(renderArr);
   };
 
   return (
@@ -246,15 +253,26 @@ const CategoryBox = ({ title }) => {
               </SubHeader>
             </SubcategoryGrid>
             <Divider />
-            {subcategoryRender}
+            {data.map((subcat, i) => {
+              return (
+                <SubCategory
+                  key={i}
+                  title={subcat.title}
+                  onDelete={() => onDelete(i)}
+                  value={subcat.value}
+                  onChange={(sliderVal) => onSliderChange(i, sliderVal)}
+                  one={one}
+                />
+              );
+            })}
             <FooterWrapper>
-              <SubHeader>{count} / 5 </SubHeader>
+              <SubHeader>{data.length} / 5 </SubHeader>
               <FontAwesomeIcon
                 icon={faPlusCircle}
                 color="#2EC4B6"
                 size="2x"
                 style={{ marginLeft: "10px" }}
-                onClick={() => setCount(count < 5 ? count + 1 : 5)}
+                onClick={() => addSubCat()}
               />
               {isEditing && (
                 <SaveButton text="save" onClick={() => saveClick()} />

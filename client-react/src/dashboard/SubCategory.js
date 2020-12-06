@@ -1,25 +1,14 @@
 import React from "react";
-import styled, { keyframes, css } from "styled-components";
+import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import Slider from "rc-slider";
-import { slideOutUp, slideInDown } from "react-animations";
+//import { slideOutUp, slideInDown } from "react-animations";
 import "rc-slider/assets/index.css";
-
-const slideOutUpAnimation = keyframes`${slideOutUp}`;
-const slideInDownAnimation = keyframes`${slideInDown}`;
-
-const outAnimation = css`
-  animation: 1s ${slideOutUpAnimation};
-`;
-const slideInAnimation = css`
-  animation: 1s ${slideInDownAnimation};
-`;
 
 const SubcategoryWrapper = styled.div`
   display: grid;
   grid-template-columns: 2fr 3fr 1fr;
-  ${(props) => (props.animate ? outAnimation : slideInAnimation)};
 `;
 const SubcategoryTitle = styled.p`
   color: ${(props) => (props.one ? "#a6a6a6" : "black")};
@@ -40,10 +29,10 @@ const Divider = styled.hr`
   margi-bottom: 20px;
 `;
 
-const SubCategory = ({ title, one, animation }) => {
+const SubCategory = ({ title, one, onDelete, onChange }) => {
   return (
     <>
-      <SubcategoryWrapper animate={animation}>
+      <SubcategoryWrapper>
         <GridDiv>
           <SubcategoryTitle one={one}>{title}</SubcategoryTitle>
         </GridDiv>
@@ -65,10 +54,16 @@ const SubCategory = ({ title, one, animation }) => {
             trackStyle={{
               backgroundColor: "#707070",
             }}
+            onAfterChange={onChange}
           />
         </GridDiv>
         <GridDiv>
-          <FontAwesomeIcon icon={faMinusCircle} size="lg" color="#2EC4B6" />
+          <FontAwesomeIcon
+            icon={faMinusCircle}
+            size="lg"
+            color="#2EC4B6"
+            onClick={onDelete}
+          />
         </GridDiv>
       </SubcategoryWrapper>
       <Divider />
