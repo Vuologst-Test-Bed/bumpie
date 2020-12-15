@@ -20,29 +20,6 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-// const data = [
-//   {
-//     category: "Category 1",
-//     score: 75,
-//   },
-//   {
-//     category: "Category 2",
-//     score: 65,
-//   },
-//   {
-//     category: "Category 3",
-//     score: 49,
-//   },
-//   {
-//     category: "Category 4",
-//     score: 80,
-//   },
-//   {
-//     category: "Category 5",
-//     score: 17,
-//   },
-// ];
-
 var i = 0;
 const LabelComponent = ({ id, anchor }) => {
   var color = "";
@@ -65,7 +42,7 @@ const LabelComponent = ({ id, anchor }) => {
     default:
       color = "#8FE8DF";
   }
-  i++;
+  i = (i + 1) % 5;
   return (
     <g transform="translate(-15, -15)">
       <circle cx="15" cy="15" r="15" fill={color} />
@@ -131,7 +108,7 @@ const PentagonBox = ({ radarData }) => {
           }}
         />
       </div>
-      <CategorySummary radarData={radarData} />
+      <CategorySummary radarData={[...radarData]} />
     </BoxWrapper>
   );
 };
