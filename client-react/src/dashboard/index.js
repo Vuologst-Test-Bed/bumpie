@@ -49,10 +49,11 @@ const Dashboard = () => {
     // Create COPY and set new data
     const copyAllData = [...allData];
     copyAllData[i] = newData;
+
     if (copyAllData[i].length === 1) {
-      copyAllData[i][0].previousTitle = copyAllData[i][0].title;
       copyAllData[i][0].title = radarData[i].category;
     }
+
     radarDataCalc(i, newData);
     setAllData(copyAllData);
   };
