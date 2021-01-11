@@ -133,6 +133,8 @@ const SaveButton = styled(DynamicButton)`
   margin-left: 5px;
 `;
 
+var globalKey = 0;
+
 const CategoryBox = ({ title, onChange, data, one, onTitleChange, key }) => {
   const [animate, setAnimate] = useState(false);
   const [dropdownDisplay, setDropdownDisplay] = useState(false);
@@ -141,7 +143,13 @@ const CategoryBox = ({ title, onChange, data, one, onTitleChange, key }) => {
   const [subEdit, setSubEdit] = useState(false);
 
   if (data.length === 0) {
-    onChange([{ title: "Sub Category " + (data.length + 1), value: 0 }]);
+    onChange([
+      {
+        title: "Sub Category " + (data.length + 1),
+        value: 0,
+        key: globalKey++,
+      },
+    ]);
   }
 
   const addSubCat = () => {
@@ -150,6 +158,7 @@ const CategoryBox = ({ title, onChange, data, one, onTitleChange, key }) => {
       renderArr.push({
         title: "Sub Category " + (data.length + 1),
         value: 0,
+        key: globalKey++,
       });
       onChange(renderArr);
     }
@@ -212,7 +221,6 @@ const CategoryBox = ({ title, onChange, data, one, onTitleChange, key }) => {
     if (renderArr.length > 1) {
       renderArr.splice(key, 1);
     }
-    // CALC THE NEW COUNT && SET ANIMATION TO ABSOLUTELY NOTHING THEN RERENDER
     onChange(renderArr);
   };
 
@@ -278,7 +286,7 @@ const CategoryBox = ({ title, onChange, data, one, onTitleChange, key }) => {
             {data.map((subcat, i) => {
               return (
                 <SubCategory
-                  key={i}
+                  key={subcat.key}
                   title={subcat.title}
                   onDelete={() => onDelete(i)}
                   value={subcat.value}
@@ -286,6 +294,7 @@ const CategoryBox = ({ title, onChange, data, one, onTitleChange, key }) => {
                   one={one}
                   edit={subEdit}
                   onSubEdit={(event) => onSubEdit(event, i)}
+                  i={i}
                 />
               );
             })}
