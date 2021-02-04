@@ -1,8 +1,8 @@
 import { CfnOutput } from "@aws-cdk/core";
-import * as iam from "@aws-cdk/aws-iam";
+// import * as iam from "@aws-cdk/aws-iam";
 import * as cognito from "@aws-cdk/aws-cognito";
 import * as sst from "@serverless-stack/resources";
-import CognitoAuthRole from "./CognitoAuthRole";
+// import CognitoAuthRole from "./CognitoAuthRole";
 import { VerificationEmailStyle } from "@aws-cdk/aws-cognito";
 
 export default class CognitoStack extends sst.Stack {
@@ -42,16 +42,12 @@ export default class CognitoStack extends sst.Stack {
       },
     });
 
-    const userPoolDomain = new cognito.UserPoolDomain(
-      this,
-      "bumpie-UserPoolDomain",
-      {
-        userPool,
-        cognitoDomain: {
-          domainPrefix: "bumpie-apps",
-        },
-      }
-    );
+    new cognito.UserPoolDomain(this, "bumpie-UserPoolDomain", {
+      userPool,
+      cognitoDomain: {
+        domainPrefix: "bumpie-apps",
+      },
+    });
 
     const userPoolClient = new cognito.UserPoolClient(
       this,
