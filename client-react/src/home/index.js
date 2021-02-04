@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "../common/navbar";
-import Footer from "../common/Footer";
 
 import { ReactComponent as DrawingIllustration } from "../assets/DrawingBikeIllustration.svg";
 import { ReactComponent as PostItDrawing } from "../assets/PostItDrawing.svg";
@@ -93,7 +91,6 @@ const StyledMain = styled.main`
 const Home = () => (
   <StyledMain style={{ backgroundColor: "#8fe8df", overflowX: "hidden" }}>
     <SwirlsDiv>
-      <Navbar />
       <ClipBoardSection>
         <TextDiv>
           <HomePageH1>
@@ -159,7 +156,6 @@ const Home = () => (
           />
         </div>
       </CoffeeSection>
-      <Footer green />
     </SwirlsDiv>
   </StyledMain>
 );

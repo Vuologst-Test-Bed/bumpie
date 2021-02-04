@@ -5,6 +5,8 @@ import logo from "../assets/logo.png";
 import UserLogo from "../common/UserLogo";
 import HeaderDropdown from "../common/HeaderDropdown";
 import { device } from "../common/MediaBreakpoints";
+import { Route, Switch, Link } from "react-router-dom";
+import Navbar from "./navbar";
 
 const rubberAnimation = keyframes`${rubberBand}`;
 
@@ -21,7 +23,7 @@ const Container = styled.header`
   }
 `;
 
-const Link = styled.a`
+const StyledLink = styled(Link)`
   font-size: 25px;
   font-weight: bold;
   color: white;
@@ -29,6 +31,9 @@ const Link = styled.a`
   justify-self: flex-start;
   margin-left: 70px;
 
+  :nth-child(2) {
+    justify-self: center;
+  }
   @media ${device.mobileL} {
     display: none;
   }
@@ -77,17 +82,30 @@ const StyledDropdown = styled(HeaderDropdown)`
   }
 `;
 
-const Header = () => {
-  return (
-    <Container>
-      <Link href="#">DASHBOARD</Link>
-      <Branding src={logo} alt="logo" />
-      <Wrapper>
-        <UserLogo />
-        <StyledDropdown />
-      </Wrapper>
-    </Container>
-  );
-};
+function checkAuth(auth) {
+  if (auth) {
+    return (
+      <Container>
+        <StyledLink to="/dashboard">DASHBOARD</StyledLink>
+        <StyledLink to="/">
+          <Branding src={logo} alt="logo" />
+        </StyledLink>
+        <Wrapper>
+          <UserLogo />
+          <StyledDropdown />
+        </Wrapper>
+      </Container>
+    );
+  } else {
+    return <Navbar />;
+  }
+}
+
+const Header = (isAuth) => (
+  <Switch>
+    <Route path="/sign-in"></Route>
+    <Route>{checkAuth(isAuth.isAuth)}</Route>
+  </Switch>
+);
 
 export default Header;
