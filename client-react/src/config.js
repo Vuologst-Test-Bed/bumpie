@@ -1,9 +1,9 @@
 const dev = {
   cognito: {
     REGION: "us-east-1",
-    USER_POOL_ID: "us-east-1_sjHCf7ytA",
-    APP_CLIENT_ID: "51jdll59j0qg21mabru7qf55su",
-    IDENTITY_POOL_ID: "us-east-1:6ee08dbe-f048-4be4-8a53-2ad520a42147",
+    USER_POOL_ID: "us-east-1_Q4gOXBKbg",
+    APP_CLIENT_ID: "1ernd3ldg5ltalrojs1j7bl6tt",
+    IDENTITY_POOL_ID: "us-east-1:f436bedb-4767-4132-ac8c-0bf03869a94e",
   },
 };
 
