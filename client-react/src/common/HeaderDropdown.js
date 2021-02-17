@@ -16,7 +16,7 @@ const Card = styled.div`
   flex-direction: column;
   min-width: 0;
   z-index: 300 !important;
-  word-wrap: break-word;
+  white-space: nowrap;
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
@@ -58,6 +58,9 @@ const ListItem = styled.li`
   padding-right: 20px;
   padding-top: 12px;
   padding-bottom: 12px;
+  &:hover {
+    background-color: #2ec4b6;
+  }
 `;
 
 const CustomLink = styled(Link)`
