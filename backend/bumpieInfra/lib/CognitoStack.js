@@ -32,6 +32,9 @@ export default class CognitoStack extends sst.Stack {
       },
       lambdaTriggers: {
         postConfirmation: createUser,
+        customMessage: new sst.Function(this, "bumpieInfra-CustomMsg", {
+          handler: "src/CustomMsg.handler",
+        }),
       },
     });
 
