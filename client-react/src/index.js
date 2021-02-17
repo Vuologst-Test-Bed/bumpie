@@ -16,6 +16,14 @@ Amplify.configure({
     identityPoolId: config.cognito.IDENTITY_POOL_ID,
     userPoolWebClientId: config.cognito.APP_CLIENT_ID,
   },
+  API: {
+    endpoints: [
+      {
+        name: "data",
+        endpoint: "https://bykvi1grwb.execute-api.us-east-1.amazonaws.com/dev",
+      },
+    ],
+  },
 });
 
 ReactDOM.render(

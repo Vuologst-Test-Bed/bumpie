@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { API } from "aws-amplify";
+
 import CategoryBox from "./CategoryBox";
 import PentagonBox from "./PentagonBox";
+
 const ContentWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -9,7 +12,6 @@ const ContentWrapper = styled.div`
   background-color: #c5c5c4;
   min-height: 80vh;
 `;
-
 const PentagonWrapper = styled.div`
   padding: 20px;
 `;
@@ -44,6 +46,20 @@ const Dashboard = () => {
       value: 0,
     },
   ]);
+
+  useEffect(() => {
+    async function onLoad() {
+      try {
+        const userData = await API.get("data", "/data");
+        setAllData(userData.data);
+      } catch (e) {
+        alert(e);
+        console.log("error", e.message);
+      }
+    }
+
+    onLoad();
+  }, []);
 
   const onChange = (i, newData) => {
     // Create COPY and set new data
