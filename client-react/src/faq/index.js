@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Collapse, { Panel } from "rc-collapse";
 
 const Wrapper = styled.div`
   margin-left: 100px;
@@ -11,7 +12,7 @@ const GridLayout = styled.div`
   font-family: "Quicksand", sans-serif;
   font-weight: bold;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
 `;
 
 const FContainerHeader = styled.div`
@@ -23,40 +24,70 @@ const FContainerHeader = styled.div`
 const FAQHeader = styled.p`
   font-family: "Quicksand", sans-serif;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 55px;
   margin-bottom: 60px;
   float: left;
-`;
-
-const QADiv = styled.div`
-  font-family: "Quicksand", sans-serif;
-  font-weight: bold;
-  font-size: 20px;
-`;
-
-const Question = styled.p`
-  font-family: "Quicksand", sans-serif;
-  font-weight: bold;
-  font-size: 20px;
-  margin-left: 5px;
 `;
 
 const Answer = styled.p`
   font-family: "Roboto", sans-serif;
   font-weight: normal;
   margin-left: 5px;
-  font-size: 15px;
+  font-size: 19px;
+  padding-left: 15px;
+  color: #fff;
 `;
 
-const FAQWrapper = styled.div`
-  padding: 20px;
-  display: grid;
-  flex-direction: row;
-`;
-
-const FAQSubWrapper = styled.div`
-  display: flex;
+const StyledCollapse = styled(Collapse)`
   margin-bottom: 20px;
+  &.rc-collapse {
+    width: 100%;
+    border-radius: 0px;
+    border-color: transparent;
+    background-color: transparent;
+    > .rc-collapse-item-active .rc-collapse-header .arrow {
+      position: relative;
+      top: 2px;
+      border-left: 5px solid transparent !important;
+      border-right: 5px solid transparent !important;
+      border-top: 8px solid #fff !important;
+      margin-right: 6px;
+    }
+    > .rc-collapse-item {
+      border: 0px;
+      > .rc-collapse-content-active {
+        background-color: #c5c5c4 !important;
+      }
+      > .rc-collapse-header {
+        height: 100px;
+        background-color: #c5c5c4 !important;
+        color: #fff !important;
+        font-family: "Quicksand";
+        font-size: 25px;
+        font-weight: normal;
+        padding: 25px;
+        > .arrow {
+          border-top: 5px solid transparent;
+          border-bottom: 5px solid transparent;
+          border-bottom: 5px solid transparent;
+          border-left: 8px solid #fff;
+        }
+      }
+    }
+    .rc-collapse-header:focus {
+      border: 0px;
+      outline: none;
+    }
+  }
+`;
+
+const CollapseWrapper = styled.div`
+  &:nth-child(even) {
+    margin-left: 35px;
+  }
+  &:nth-child(odd) {
+    margin-right: 35px;
+  }
 `;
 
 const data = [
@@ -68,7 +99,7 @@ const data = [
   },
   {
     question:
-      "Another question goes here; this is just a spacefiller text to see how this would look if a Frequently Asked Question was this long!",
+      "Another question goes here; this is just a spacefiller text to see.",
     answer:
       "This is also some random text to see how this would look if the answer were two lines long.",
   },
@@ -83,7 +114,7 @@ const data = [
   },
   {
     question:
-      "What would this look like if the question was really long, and theanswer was also really long, and I'm purposely expanding this text just to see what it would look like if this question was really long sitting beside a question and an answer that is really short?",
+      "What would this look like if the question was really long, and theanswer was also really long,",
     answer:
       "It would actually look pretty weird in terms of spacing, and it would expand the spacing between the question and the answer of the short column next to it (refer to the column to the left of this one). So let's try ourbest to place questions with similar lengths side-by-side; that way, there would be less of an awkward looking gap!",
   },
@@ -95,16 +126,13 @@ const data = [
 ];
 
 const QABox = ({ question, answer }) => (
-  <FAQWrapper>
-    <FAQSubWrapper>
-      <QADiv>Q:</QADiv>
-      <Question>{question}</Question>
-    </FAQSubWrapper>
-    <FAQSubWrapper>
-      <QADiv>A:</QADiv>
-      <Answer>{answer}</Answer>
-    </FAQSubWrapper>
-  </FAQWrapper>
+  <CollapseWrapper>
+    <StyledCollapse>
+      <Panel header={question}>
+        <Answer>{answer}</Answer>
+      </Panel>
+    </StyledCollapse>
+  </CollapseWrapper>
 );
 
 const FAQ = () => (
