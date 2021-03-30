@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Auth } from "aws-amplify";
 import { useHistory, useLocation } from "react-router-dom";
 import { useAppContext } from "../libs/contextLib";
@@ -10,6 +10,9 @@ import { ReactComponent as PaperAirPlaneAndFolderSVG } from "../assets/PaperAirP
 import { ReactComponent as EmailSVG } from "../assets/Email_verified-01.svg";
 import { device } from "../common/MediaBreakpoints";
 import { Link } from "react-router-dom";
+import { rubberBand } from "react-animations";
+
+const rubberAnimation = keyframes`${rubberBand}`;
 
 const CenterContainer = styled.div`
   display: flex;
@@ -66,6 +69,22 @@ const Button = styled(DynamicButton)`
   border-radius: 37px;
   border: 1px solid transparent;
   cursor: pointer;
+  background-image: ${(props) =>
+    props.light
+      ? "-webkit-linear-gradient(90deg, #a5b8b5 50%, transparent 50%)"
+      : "-webkit-linear-gradient(90deg, #0b332f 50%, transparent 50%)"};
+  background-image: ${(props) =>
+    props.light
+      ? "linear-gradient(90deg, #a5b8b5 50%, transparent 50%)"
+      : "linear-gradient(90deg, #0b332f 50%, transparent 50%)"};
+  background-position: 100%;
+  background-size: 400%;
+  -webkit-transition: background 300ms ease-in-out;
+  transition: background 300ms ease-in-out;
+
+  &:hover {
+    background-position: 0;
+  }
   @media (max-width: 1050px) {
     width: 150px;
   }
@@ -160,6 +179,9 @@ const StyledBrandingLink = styled(Link)`
 
 const Branding = styled.img`
   height: 30px;
+  &:hover {
+    animation: 2s ${rubberAnimation};
+  }
 `;
 
 const Form = styled.form`
