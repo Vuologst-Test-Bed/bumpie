@@ -116,17 +116,13 @@ const Dashboard = () => {
 
   const onTitleChange = (title, i) => {
     const copyCatTitles = [...radarData];
-    copyCatTitles[i].category = title;
+    if (title !== "") {
+      copyCatTitles[i].category = title;
+    }
     setRadarData(copyCatTitles);
     const copyAllData = [...allData];
     if (copyAllData[i].length === 1) {
-      copyAllData[i][0].previousTitle = copyAllData[i][0].title;
       copyAllData[i][0].title = copyCatTitles[i].category;
-    } else {
-      if (copyAllData[i][0].previousTitle !== null) {
-        copyAllData[i][0].title = copyAllData[i][0].previousTitle;
-        copyAllData[i][0].previousTitle = null;
-      }
     }
     setAllData(copyAllData);
   };
