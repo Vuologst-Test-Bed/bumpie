@@ -1,17 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { Auth } from "aws-amplify";
 
 import { device } from "../common/MediaBreakpoints";
 
-import DynamicButton from "../common/DynamicButton";
 import ToggleButton from "../common/ToggleButton";
 import SettingsSectionHeader from "../common/SettingsSectionHeader";
 import RadioButton from "./RadioButton";
-
-const StyledButton = styled(DynamicButton)`
-  text-transform: uppercase;
-  color: black;
-`;
 
 const PageTitle = styled.h2`
   font-size: 35px;
@@ -34,7 +29,17 @@ const Wrapper = styled.div`
 `;
 
 const NotificationSettings = () => {
+  const [email, setEmail] = useState("");
   const [emailNotification, setEmailToggle] = useState(false);
+
+  useEffect(() => {
+    async function fetchEmail() {
+      const { attributes } = await Auth.currentAuthenticatedUser();
+      setEmail(attributes.email);
+    }
+    // eslint-disable-next-line
+    fetchEmail();
+  }, []);
 
   return (
     <Wrapper>
@@ -46,7 +51,7 @@ const NotificationSettings = () => {
       >
         <SettingsSectionHeader title="Notify me through..." />
         <label style={{ display: "flex", justifyContent: "space-between" }}>
-          <Email>email@email.com</Email>
+          <Email>{email}</Email>
           <ToggleButton
             onChange={() => setEmailToggle(!emailNotification)}
             checked={emailNotification}
@@ -61,20 +66,8 @@ const NotificationSettings = () => {
           <div style={{ marginTop: 30 }}>
             <RadioButton />
           </div>
-          {/* start of reset and save button grouping TODO -- Move to div that will surround the page */}
-          <div
-            style={{
-              marginTop: 50,
-              display: "flex",
-              justifyContent: "flex-end",
-            }}
-          >
-            <StyledButton text="reset" />
-            <StyledButton text="save" />
-          </div>
         </div>
       </div>
-      {/* end of reset and save button grouping...*/}
     </Wrapper>
   );
 };
