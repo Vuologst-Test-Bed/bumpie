@@ -63,7 +63,7 @@ export const forgotPassword = (event, username) =>
         <img
           src="https://i.ibb.co/MG0WRVt/B-01.png"
           width="50px"
-          alt="Bumpie Logo"
+          alt="tumpie Logo"
           border="0"
         />
       </section>
@@ -74,7 +74,7 @@ export const forgotPassword = (event, username) =>
         to recover your account:
         <br />
         <a
-          href="https://bumpie.me/password-reset/${event.request.userAttributes.email}/${event.request.codeParameter}"
+          href="https://tumpie.me/password-reset/${event.request.userAttributes.email}/${event.request.codeParameter}"
           >Reset Password</a
         >
         <br />
@@ -85,12 +85,12 @@ export const forgotPassword = (event, username) =>
       <footer>
         <center>
           <p1 class="ftext"
-            >This email was sent to you by: BUMPIE<br />
+            >This email was sent to you by: tUMPIE<br />
             <br />
             You are receiving this email because you recently<br />
             signed up for our services.<br />
             <br />
-            © 2020 BUMPIE. All Rights Reserved.
+            © 2020 tUMPIE. All Rights Reserved.
           </p1>
         </center>
       </footer>

@@ -3,7 +3,7 @@ import AWS from "aws-sdk";
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 export const main = async (event, context) => {
-  console.log("Table Name: ", process.env.tableName);
+  console.log("Table Name: ", process.env.dataTableName);
   console.log("event: ", event);
   console.log("event body: ", event.body);
   console.log("context: ", context);
@@ -38,7 +38,7 @@ export const main = async (event, context) => {
   console.log("categoryNames", bodyContent.categoryNames);
 
   const params = {
-    TableName: process.env.tableName,
+    TableName: process.env.dataTableName,
     Key: {
       userId: username,
     },

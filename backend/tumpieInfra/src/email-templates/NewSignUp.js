@@ -63,7 +63,7 @@ export const newSignUp = (event, username) =>
         <img
           src="https://i.ibb.co/MG0WRVt/B-01.png"
           width="50px"
-          alt="Bumpie Logo"
+          alt="tumpie Logo"
           border="0"
         />
       </section>
@@ -71,11 +71,11 @@ export const newSignUp = (event, username) =>
       <h1>${username},</h1>
       <p class="btext">
         <br />
-        Welcome to Bumpie! Click the link below to verify your account:
+        Welcome to Tumpie! Click the link below to verify your account:
         <br />
         <a
-          href="https://bumpie.me/email-verified/${event.request.userAttributes.email}/${event.request.codeParameter}"
-          >bumpie.me</a
+          href="https://tumpie.me/email-verified/${event.request.userAttributes.email}/${event.request.codeParameter}"
+          >tumpie.me</a
         >
         <br />
         <br />
@@ -85,12 +85,12 @@ export const newSignUp = (event, username) =>
       <footer>
         <center>
           <p1 class="ftext"
-            >This email was sent to you by: BUMPIE<br />
+            >This email was sent to you by: TUMPIE<br />
             <br />
             You are receiving this email because you recently<br />
             signed up for our services.<br />
             <br />
-            © 2020 BUMPIE. All Rights Reserved.
+            © 2020 TUMPIE. All Rights Reserved.
           </p1>
         </center>
       </footer>

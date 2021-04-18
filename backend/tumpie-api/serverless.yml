@@ -1,5 +1,5 @@
 # NOTE: update this with your service name
-service: BumpieAPI
+service: TumpieAPI
 
 # Create an optimized package for our functions
 package:
@@ -23,7 +23,8 @@ provider:
   stage: dev
   region: us-east-1
   environment:
-    tableName: !ImportValue "${self:custom.sstApp}-bumpieInfra-TableName"
+    dataTableName: !ImportValue "${self:custom.sstApp}-tumpieDataInfra-TableName"
+    notificationTableName: !ImportValue "${self:custom.sstApp}-tumpieNotificationInfra-TableName"
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -35,11 +36,12 @@ provider:
         - dynamodb:DeleteItem
         - dynamodb:DescribeTable
       Resource:
-        - !ImportValue "${self:custom.sstApp}-bumpieInfra-TableArn"
+        - !ImportValue "${self:custom.sstApp}-tumpieDataInfra-TableArn"
+        - !ImportValue "${self:custom.sstApp}-tumpieNotificationInfra-TableArn"
 
 functions:
-  get:
-    handler: get.main
+  getData:
+    handler: getData.main
     events:
       - http:
           path: data
@@ -47,7 +49,7 @@ functions:
           cors: true
           authorizer: aws_iam
   update:
-    handler: update.main
+    handler: updateData.main
     events:
       - http:
           path: data

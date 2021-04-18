@@ -10,11 +10,11 @@ export const handler = (event, context, callback) => {
 
   if (event.triggerSource === "CustomMessage_ForgotPassword") {
     console.log("CustomMessage_ForgotPassword");
-    event.response.emailSubject = "Bumpie Password Recovery";
+    event.response.emailSubject = "Tumpie Password Recovery";
     event.response.emailMessage = forgotPassword(event, username);
   } else if (event.triggerSource === "CustomMessage_SignUp") {
     console.log("CustomMessage_SignUp");
-    event.response.emailSubject = "Bumpie Email Verification";
+    event.response.emailSubject = "Tumpie Email Verification";
     event.response.emailMessage = newSignUp(event, username);
   }
 
