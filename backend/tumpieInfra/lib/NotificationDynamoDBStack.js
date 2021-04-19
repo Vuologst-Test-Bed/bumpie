@@ -13,7 +13,7 @@ export default class NotificationDynamoDBStack extends sst.Stack {
 
     this.notificationTable = new dynamodb.Table(
       this,
-      "tumpieNotificationDataInfra-Table",
+      "tumpieNotificationInfra-Table",
       {
         billingMode: dynamodb.BillingMode.PAY_PER_REQUEST, // Use on-demand billing mode
         partitionKey: { name: "userId", type: dynamodb.AttributeType.STRING },
@@ -21,17 +21,13 @@ export default class NotificationDynamoDBStack extends sst.Stack {
     );
 
     // Output values
-    new CfnOutput(this, "tumpieNotificationDataInfra-TableName", {
+    new CfnOutput(this, "tumpieNotificationInfra-TableName", {
       value: this.notificationTable.tableName,
-      exportName: app.logicalPrefixedName(
-        "tumpieNotificationDataInfra-TableName"
-      ),
+      exportName: app.logicalPrefixedName("tumpieNotificationInfra-TableName"),
     });
-    new CfnOutput(this, "tumpieNotificationDataInfra-TableArn", {
+    new CfnOutput(this, "tumpieNotificationInfra-TableArn", {
       value: this.notificationTable.tableArn,
-      exportName: app.logicalPrefixedName(
-        "tumpieNotificationDataInfra-TableArn"
-      ),
+      exportName: app.logicalPrefixedName("tumpieNotificationInfra-TableArn"),
     });
   }
 }

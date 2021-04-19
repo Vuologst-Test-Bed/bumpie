@@ -15,7 +15,7 @@ custom:
   # commands. Or falls back to what we have set in the provider section.
   stage: ${opt:stage, self:provider.stage}
   # Name of the SST app that's deploying our infrastructure
-  sstApp: ${self:custom.stage}-bumpieInfra
+  sstApp: ${self:custom.stage}-tumpieInfra
 
 provider:
   name: aws
@@ -48,11 +48,27 @@ functions:
           method: get
           cors: true
           authorizer: aws_iam
-  update:
+  updateData:
     handler: updateData.main
     events:
       - http:
           path: data
+          method: put
+          cors: true
+          authorizer: aws_iam
+  getNotification:
+    handler: getNotification.main
+    events:
+      - http:
+          path: notification
+          method: get
+          cors: true
+          authorizer: aws_iam
+  updateNotification:
+    handler: updateNotification.main
+    events:
+      - http:
+          path: notification
           method: put
           cors: true
           authorizer: aws_iam
