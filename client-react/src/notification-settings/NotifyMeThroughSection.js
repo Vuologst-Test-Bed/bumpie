@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Auth } from "aws-amplify";
+import { Auth, API } from "aws-amplify";
 
 import ToggleButton from "../common/ToggleButton";
 import SettingsSectionHeader from "../common/SettingsSectionHeader";
@@ -19,8 +19,14 @@ const NotifyMeThroughSection = () => {
       const { attributes } = await Auth.currentAuthenticatedUser();
       setEmail(attributes.email);
     }
+    async function fetchFrequency() {
+      const response = await API.get("data", "/notification");
+      if (response.frequency === "none") setEmailToggle(false);
+      else setEmailToggle(true);
+    }
     // eslint-disable-next-line
     fetchEmail();
+    fetchFrequency();
   }, []);
 
   return (

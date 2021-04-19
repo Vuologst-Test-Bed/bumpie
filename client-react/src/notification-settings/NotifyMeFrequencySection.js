@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Auth } from "aws-amplify";
+import { API } from "aws-amplify";
 
 import SettingsSectionHeader from "../common/SettingsSectionHeader";
 import DynamicButton from "../common/DynamicButton";
@@ -29,7 +29,70 @@ const RadButton = styled(DynamicButton)`
 const NotifyMeFrequencySection = () => {
   const [radioSet, setRadioSet] = useState([true, false, false, false]);
 
+  const getFrequencyIndex = (freq) => {
+    switch (freq) {
+      case "biweekly":
+        return 0;
+      case "monthly":
+        return 1;
+      case "quarterly":
+        return 2;
+      case "yearly":
+        return 3;
+      case "none":
+        return 4;
+      default:
+        return 4;
+    }
+  };
+
+  const getFrequencyText = (index) => {
+    switch (index) {
+      case 0:
+        return "biweekly";
+      case 1:
+        return "monthly";
+      case 2:
+        return "quarterly";
+      case 3:
+        return "yearly";
+      case 4:
+        return "none";
+      default:
+        return "none";
+    }
+  };
+
+  useEffect(() => {
+    async function fetchFrequency() {
+      try {
+        const response = await API.get("data", "/notification");
+        let index = getFrequencyIndex(response.frequency);
+        radioClick(index);
+      } catch (e) {
+        alert(e);
+        console.log(e.message);
+      }
+    }
+    fetchFrequency();
+    // eslint-disable-next-line
+  }, []);
+
+  const updateNotificationTable = async (index) => {
+    try {
+      await API.put("data", "/notification", {
+        body: {
+          frequency: getFrequencyText(index),
+        },
+      });
+    } catch (e) {
+      alert(e);
+      console.log(e);
+    }
+  };
+
   const radioClick = (index) => {
+    updateNotificationTable(index);
     setRadioSet(
       radioSet.map((x, i) => {
         if (index !== i) {
