@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { device } from "../common/MediaBreakpoints";
@@ -21,11 +21,15 @@ const Wrapper = styled.div`
 `;
 
 const NotificationSettings = () => {
+  const [emailNotification, setEmailToggle] = useState(false);
   return (
     <Wrapper>
       <PageTitle>Notification Settings</PageTitle>
       <div style={{ margin: 80 }}>
-        <NotifyMeThroughSection />
+        <NotifyMeThroughSection
+          emailNotification={emailNotification}
+          setEmailToggle={setEmailToggle}
+        />
         <div style={{ marginTop: 70 }}>
           <NotifyMeFrequencySection />
         </div>

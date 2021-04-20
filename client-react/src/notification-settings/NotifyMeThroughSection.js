@@ -10,24 +10,45 @@ const Email = styled.span`
   color: #989293;
 `;
 
-const NotifyMeThroughSection = () => {
+const NotifyMeThroughSection = ({ emailNotification, setEmailToggle }) => {
   const [email, setEmail] = useState("");
-  const [emailNotification, setEmailToggle] = useState(false);
 
   useEffect(() => {
     async function fetchEmail() {
       const { attributes } = await Auth.currentAuthenticatedUser();
       setEmail(attributes.email);
     }
-    async function fetchFrequency() {
+
+    async function fetchActive() {
       const response = await API.get("data", "/notification");
-      if (response.frequency === "none") setEmailToggle(false);
-      else setEmailToggle(true);
+      console.log("fetch", response.active);
+      if (response.active === true) setEmailToggle(true);
+      else setEmailToggle(false);
     }
-    // eslint-disable-next-line
+
     fetchEmail();
-    fetchFrequency();
+    fetchActive();
+    // eslint-disable-next-line
   }, []);
+
+  const updateNotificationTable = async (newState) => {
+    console.log("new state", newState);
+    try {
+      await API.put("data", "/notification/active", {
+        body: {
+          active: newState,
+        },
+      });
+    } catch (e) {
+      alert(e);
+      console.log(e);
+    }
+  };
+
+  const updateEmailToggle = () => {
+    updateNotificationTable(!emailNotification);
+    setEmailToggle(!emailNotification);
+  };
 
   return (
     <>
@@ -35,7 +56,7 @@ const NotifyMeThroughSection = () => {
       <label style={{ display: "flex", justifyContent: "space-between" }}>
         <Email>{email}</Email>
         <ToggleButton
-          onChange={() => setEmailToggle(!emailNotification)}
+          onChange={() => updateEmailToggle()}
           checked={emailNotification}
         />
       </label>

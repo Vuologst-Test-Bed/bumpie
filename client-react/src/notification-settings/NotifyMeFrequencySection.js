@@ -27,7 +27,7 @@ const RadButton = styled(DynamicButton)`
 `;
 
 const NotifyMeFrequencySection = () => {
-  const [radioSet, setRadioSet] = useState([true, false, false, false]);
+  const [radioSet, setRadioSet] = useState([false, false, false, false]);
 
   const getFrequencyIndex = (freq) => {
     switch (freq) {
@@ -39,10 +39,8 @@ const NotifyMeFrequencySection = () => {
         return 2;
       case "yearly":
         return 3;
-      case "none":
-        return 4;
       default:
-        return 4;
+        return 3;
     }
   };
 
@@ -56,10 +54,8 @@ const NotifyMeFrequencySection = () => {
         return "quarterly";
       case 3:
         return "yearly";
-      case 4:
-        return "none";
       default:
-        return "none";
+        return "yearly";
     }
   };
 
@@ -80,7 +76,7 @@ const NotifyMeFrequencySection = () => {
 
   const updateNotificationTable = async (index) => {
     try {
-      await API.put("data", "/notification", {
+      await API.put("data", "/notification/frequency", {
         body: {
           frequency: getFrequencyText(index),
         },

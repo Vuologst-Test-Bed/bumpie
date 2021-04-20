@@ -34,17 +34,16 @@ export const main = async (event, context) => {
   // };
 
   let bodyContent = JSON.parse(event.body);
-  console.log("subCategoryFields: ", bodyContent.subCategoryFields);
-  console.log("categoryNames", bodyContent.categoryNames);
+  console.log("active", bodyContent.active);
 
   const params = {
     TableName: process.env.notificationTableName,
     Key: {
       userId: username,
     },
-    UpdateExpression: "SET frequency = :frequency",
+    UpdateExpression: "SET active = :active",
     ExpressionAttributeValues: {
-      ":frequency": bodyContent.frequency,
+      ":active": bodyContent.active,
     },
     ReturnValues: "ALL_NEW",
   };

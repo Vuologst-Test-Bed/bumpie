@@ -64,11 +64,19 @@ functions:
           method: get
           cors: true
           authorizer: aws_iam
-  updateNotification:
-    handler: updateNotification.main
+  updateNotificationActive:
+    handler: updateNotificationActive.main
     events:
       - http:
-          path: notification
+          path: notification/active
+          method: put
+          cors: true
+          authorizer: aws_iam
+  updateNotificationFrequency:
+    handler: updateNotificationFrequency.main
+    events:
+      - http:
+          path: notification/frequency
           method: put
           cors: true
           authorizer: aws_iam
