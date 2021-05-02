@@ -25,6 +25,12 @@ export default class CognitoStack extends sst.Stack {
       selfSignUpEnabled: true, // Allow users to sign up
       autoVerify: { email: true }, // Verify email addresses by sending a verification code
       signInAliases: { email: true }, // Set email as an alias
+      customAttributes: {
+        givenName: {
+          required: true,
+          mutable: false,
+        },
+      },
       lambdaTriggers: {
         postConfirmation: createUser,
         customMessage: new sst.Function(this, "tumpieInfra-CustomMsg", {
